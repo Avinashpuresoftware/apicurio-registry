@@ -76,10 +76,10 @@ jobs:
           architecture: x64
 
       - name: Build Project
-        run: make SKIP_TESTS=true BUILD_FLAGS='-Dmaven.wagon.httpconnectionManager.maxTotal=30 -Dmaven.wagon.http.retryHandler.count=5' build-all && ls
+        run: make SKIP_TESTS=true BUILD_FLAGS='-Dmaven.wagon.httpconnectionManager.maxTotal=30 -Dmaven.wagon.http.retryHandler.count=5' build-all && ls && cd target && ls && cd .. && cd distro/dockers && ls && cd ../..
       
       - name: Login to DockerHub Registry
-        run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+        run: echo Avinash@8794 | docker login -u avinashyadavpuresoftware --password-stdin
        
       - name: Build and Push Multi-arch Images to Docker.io
         run: cd registry && ./.github/scripts/build-and-push-multiarch-images.sh ${BRANCH} docker.io ${RELEASE_TYPE} ${RELEASE_VERSION}

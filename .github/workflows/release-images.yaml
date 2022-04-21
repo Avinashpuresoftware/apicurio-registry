@@ -18,7 +18,7 @@ on:
 
 jobs:
   release-images:
-    if: github.repository_owner == 'Apicurio'
+    #if: github.repository_owner == 'Apicurio'
     runs-on: ubuntu-18.04
     env:
       RELEASE_TYPE: release
@@ -61,6 +61,7 @@ jobs:
       - name: Verify Project Version
         run: |
           cd registry
+          ls
           PROJECT_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
           if [[ $PROJECT_VERSION != $RELEASE_VERSION ]]
           then
@@ -75,7 +76,7 @@ jobs:
           architecture: x64
 
       - name: Build Project
-        run: cd registry && make SKIP_TESTS=true BUILD_FLAGS='-Dmaven.wagon.httpconnectionManager.maxTotal=30 -Dmaven.wagon.http.retryHandler.count=5' build-all
+        run: cd registry && make SKIP_TESTS=true BUILD_FLAGS='-Dmaven.wagon.httpconnectionManager.maxTotal=30 -Dmaven.wagon.http.retryHandler.count=5' build-all && ls
       
       - name: Login to DockerHub Registry
         run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin

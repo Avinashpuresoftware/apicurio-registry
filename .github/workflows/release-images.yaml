@@ -8,12 +8,12 @@ on:
 # github.event context is only available when the workflow gets triggered by a release event. Therefore, commenting the below
 # section and add an additional step of fething the required details explicitly to make the workflow work with manual triggers
 
-#env:
+env:
 #  # Setting up workflow level environment varibles to make them available in both jobs
 #  # The values are extracted from the github.event context, which is automatically availble when a release a created.
-#  RELEASE_VERSION: ${{ github.event.release.name }}
-#  SOURCE_CODE_URL: ${{ github.event.release.zipball_url }}
-#  BRANCH: ${{ github.event.release.target_commitish }}
+#   RELEASE_VERSION: ${{ github.event.release.name }}
+   SOURCE_CODE_URL: ${{ github.event.release.zipball_url }}
+   BRANCH: ${{ github.event.release.target_commitish }}
 
 
 jobs:

@@ -52,7 +52,7 @@ jobs:
         run: |
           echo "This is a pre-release. Setting 'RELEASE_TYPE' to 'pre-release'"
           echo "RELEASE_TYPE=pre-release" >> $GITHUB_ENV
-
+      - uses: actions/checkout@v3
      # - name: Download Source Code
      #   run: wget -c $SOURCE_CODE_URL && unzip $RELEASE_VERSION && ls -lrt && mv ${{github.repository_owner}}* registry
         

@@ -53,21 +53,21 @@ jobs:
           echo "This is a pre-release. Setting 'RELEASE_TYPE' to 'pre-release'"
           echo "RELEASE_TYPE=pre-release" >> $GITHUB_ENV
 
-      - name: Download Source Code
-        run: wget -c $SOURCE_CODE_URL && unzip $RELEASE_VERSION && ls -lrt && mv ${{github.repository_owner}}* registry
+     # - name: Download Source Code
+     #   run: wget -c $SOURCE_CODE_URL && unzip $RELEASE_VERSION && ls -lrt && mv ${{github.repository_owner}}* registry
         
       # We have faced issues in the past where a github release was created from a wrong commit
       # This step will ensure that the release was created from the right commit  
-      - name: Verify Project Version
-        run: |
-          cd registry
-          ls
-          PROJECT_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
-          if [[ $PROJECT_VERSION != $RELEASE_VERSION ]]
-          then
-              echo "ERROR: Project Version '${PROJECT_VERSION}' does not match with Released Version '${RELEASE_VERSION}'"
-              exit 1	  
-          fi
+   #   - name: Verify Project Version
+   #     run: |
+    #      cd registry
+    #      ls
+    #      PROJECT_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+     #     if [[ $PROJECT_VERSION != $RELEASE_VERSION ]]
+    #      then
+    #          echo "ERROR: Project Version '${PROJECT_VERSION}' does not match with Released Version '${RELEASE_VERSION}'"
+    #          exit 1	  
+    #      fi
 
       - name: Set up JDK 11
         uses: AdoptOpenJDK/install-jdk@v1
